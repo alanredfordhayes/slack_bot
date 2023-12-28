@@ -10,9 +10,6 @@ export default {
         };
     },
     stacks(app) {
-        app.setDefaultFunctionProps({
-            runtime: "go",
-        });
         app
             .stack(NextStack)
             .stack(ApiStack);
