@@ -6,7 +6,8 @@
     "dev": "sst bind next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "remote": "curl -u $JENKINS_REMOTE_USER -X POST 'localhost:8080/job/slack_bot/build?delay=0sec&token=22'"
   },
   "dependencies": {
     "create-next-app": "^14.0.4",

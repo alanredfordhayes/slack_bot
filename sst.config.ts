@@ -1,20 +1,20 @@
 import { SSTConfig } from "sst";
-import { NextjsSite } from "sst/constructs";
+import { ApiStack } from "./stacks/ApiStack";
+import { NextStack }  from "./stacks/NextStack";
 
 export default {
-  config(_input) {
-    return {
-      name: "slack-bot",
-      region: "us-east-1",
-    };
-  },
-  stacks(app) {
-    app.stack(function Site({ stack }) {
-      const site = new NextjsSite(stack, "site");
-
-      stack.addOutputs({
-        SiteUrl: site.url,
-      });
-    });
-  },
+    config(_input) {
+        return {
+            name: "slack-bot",
+            region: "us-east-1",
+        };
+    },
+    stacks(app) {
+        app.setDefaultFunctionProps({
+            runtime: "go",
+        });
+        app
+            .stack(NextStack)
+            .stack(ApiStack);
+    },
 } satisfies SSTConfig;
