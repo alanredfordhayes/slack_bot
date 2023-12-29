@@ -8,11 +8,11 @@ import (
 	"github.com/aws/aws-lambda-go/lambda"
 )
 
-func Handler(context context.Context, event events.DynamoDBStreamRecord) {
+func Handler(context context.Context, event events.DynamoDBEvent) {
 	fmt.Println(context)
 	fmt.Printf("Context Type: %T\n", context)
 	fmt.Println(event)
-	fmt.Printf("Event Record Type: %T\n", event.NewImage)
+	fmt.Printf("Event Type: %T\n", event.Records)
 }
 
 func main() {
