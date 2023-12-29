@@ -1,6 +1,7 @@
 import { SSTConfig } from "sst";
 import { ApiStack } from "./stacks/ApiStack";
 import { NextStack }  from "./stacks/NextStack";
+import { DataStack } from "./stacks/DataStack";
 
 export default {
     config(_input) {
@@ -10,8 +11,12 @@ export default {
         };
     },
     stacks(app) {
+        if (app.stage !== "prod") {
+            app.setDefaultRemovalPolicy("destroy");
+        }
         app
             .stack(NextStack)
-            .stack(ApiStack);
+            .stack(ApiStack)
+            .stack(DataStack)
     },
 } satisfies SSTConfig;
