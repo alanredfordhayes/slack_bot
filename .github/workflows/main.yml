@@ -23,9 +23,7 @@ jobs:
 
       - name: Deploy
         env:
-          DATABASE_URL: ${{ secrets.DATABASE_URL }}
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
         run: |
-          npx prisma generate
           npx sst deploy --stage prod
